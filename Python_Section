@@ -1,0 +1,45 @@
+import string
+import numpy as np
+import pandas as pd
+import heapq
+
+data = open('UN_voting_data.txt','r')
+
+A=pd.read_table(data, skipinitialspace=True, index_col=0, sep=' ', header=None)
+AT=A.transpose()
+M=AT.dot(A)
+Mtag=A.dot(AT)
+most_opposed = Mtag.min() #trying to find 
+most_insync = Mtag.max()
+print most_opposed.nlargest(2)
+print most_opposed.nlargest(20)
+print most_insync.nlargest(2)
+
+"""1. Which pair of countries are most opposed? (They have the most negative dot-
+product.)
+Answer: 
+Belarus                    -1927
+United_States_of_America   -1927
+
+
+2. What are the ten most opposed pairs of countries?
+Answer: Belarus            -1927 United_States_of_America   -1927
+Syria                      -1861 Cuba                       -1807
+Algeria                    -1742 Viet_Nam                   -1740
+Libya                      -1665 Guinea                     -1616
+Mongolia                   -1615 Mali                       -1605
+Sudan                      -1582 Tanzania                   -1536
+Ukraine                    -1534 Mozambique                 -1495
+Afghanistan                -1485 India                      -1484
+Egypt                      -1474 China                      -1467
+Kuwait                     -1465 Indonesia                  -1447
+
+3. Which pair of distinct countries are in the greatest agreement (have the most pos-
+itive dot-product)?
+Answer: Philippines    4690 	Mexico         4676
+
+"""
+
+
+
+
